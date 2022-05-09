@@ -12,8 +12,7 @@ struct file_s {
 
 typedef struct file_s file;
 
-file cree_pile(int capacite) {
-
+file cree_file(int capacite) {
     contenu* support = malloc(sizeof(contenu)*capacite);
     file file = {
         .support = support,
@@ -22,11 +21,9 @@ file cree_pile(int capacite) {
         .fin = 0
     };
     return file;
-
 }
 
 void enfile(file* file, contenu valeur) {
-
     file->support[file->fin] = valeur;
     file->fin = (file->fin+1)%file->capacite;
 
@@ -34,15 +31,12 @@ void enfile(file* file, contenu valeur) {
         file->capacite *= 2;
         file->support = realloc(file->support, sizeof(contenu)*file->capacite);
     }
-
 }
 
 contenu defile(file* file) {
-
     contenu valeur = file->support[file->debut];
     file->debut = (file->debut + 1)%file->capacite;
     return valeur;
-
 }
 
 int main() {
